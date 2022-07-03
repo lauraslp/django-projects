@@ -1,0 +1,58 @@
+{% extends 'vetapp/base.html' %}
+{% load crispy_forms_tags %}
+{% load bootstrap4 %}
+{% bootstrap_css %}
+{% bootstrap_javascript jquery='full' %}
+{% block content %}
+{% load static %}
+
+<body class="title-page title-img">
+  <div class="container ml-auto">
+      <div class="col-md-7 offset-md-5 px-1 text-black page-content">
+        <div class="px-5 ms-xl-4">
+            <i class="fas fa-crow fa-2x me-3 pt-5 mt-xl-4"></i>
+            <img src="{% static 'img/vet-logo.png' %}" width="120" height="80" alt="">
+            <span class="h1 fw-bold mb-0 align-middle">PetIS</span>
+        </div>
+        <div class="d-flex align-items-center h-custom-2 px-5 ms-xl-4 mt-3 pt-3 pt-xl-0 mt-xl-n5 pb-3">
+          <form style="width: 35rem;" method="POST" autocomplete="off">
+            {% csrf_token %}
+            <h5 class="fw-normal ml-0 mb-3 pb-3" style="letter-spacing: 1px;">Register:</h5>
+              <div class="form-row">
+                  <div class="form-group col-md-6 mb-0">
+                      {{ form.first_name|as_crispy_field }}
+                  </div>
+                  <div class="form-group col-md-6 mb-0">
+                      {{ form.last_name|as_crispy_field }}
+                  </div>
+              </div>
+              <div class="form-row">
+                  <div class="form-group col-md-12 mb-0">
+                      {{ form.clinic|as_crispy_field }}
+                  </div>
+              </div>
+              <div class="form-row">
+                  <div class="form-group col-md-6 mb-0">
+                      {{ form.email|as_crispy_field }}
+                  </div>
+                  <div class="form-group col-md-6 mb-0">
+                      {{ form.username|as_crispy_field }}
+                  </div>
+              </div>
+              <div class="form-row">
+                  <div class="form-group col-md-6 mb-0">
+                      {{ form.password1|as_crispy_field }}
+                  </div>
+                  <div class="form-group col-md-6 mb-0">
+                      {{ form.password2|as_crispy_field }}
+                  </div>
+              </div>
+              <button class="btn btn-info btn-lg btn-block mb-3" type="submit" value="Register">Register</button>
+              <small class="text-muted">Already have an account? <a href="{% url 'vet-login' %}" class="link-info">Log in</a></small>
+          </form>
+
+        </div>
+      </div>
+  </div>
+</body>
+{% endblock %}

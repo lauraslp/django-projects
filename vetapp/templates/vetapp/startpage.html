@@ -1,0 +1,34 @@
+{% extends 'vetapp/base.html' %}
+{% load bootstrap4 %}
+{% bootstrap_css %}
+{% bootstrap_javascript jquery='full' %}
+
+{% block content %}
+{% include 'vetapp/navigation.html' %}
+{% load static %}
+
+<div class="container mx-lg-auto">
+  <div class="row">
+      <div class="col-lg-3 mt-5 pt-5">
+        <div class="pl-5 ml-2 card-title"><h5>Registry</h5></div>
+            <a target="_self" href="{% url 'registry' %}" class="imgButton zero">
+            <img src="{% static 'img/petregistry1.jpg' %}" class="rounded-circle" alt="Reports" width="200" height="200" alt="Reports Photo"></a>
+      </div>
+      <div class="col-lg-3 mt-5 pt-5">
+        <div class="pl-5 ml-3 card-title"><h5>Register New</h5></div>
+            <a target="_self" href="{% url 'new-patient' %}" class="imgButton one">
+            <img src="{% static 'img/registernew.jpg' %}" class="rounded-circle" alt="Register New" width="200" height="200" alt="RegNew Photo"></a>
+      </div>
+      <div class="col-lg-3 mt-5 pt-5">
+        <div class="pl-5 ml-4 card-title"><h5>Reports</h5></div>
+            <a target="_self" href="{% url 'reports'%}" class="imgButton two">
+            <img src="{% static 'img/reports.jpg' %}" class="rounded-circle" alt="Reports" width="200" height="200" alt="Reports Photo"></a>
+      </div>
+      <div class="col-lg-3 mt-5 pt-5">
+        <div class="pl-5 ml-2 card-title"><h5>User's Profile</h5></div>
+            <a target="_self" href="{% url 'user-profile'%}" class="imgButton three">
+            <img src="{% static 'img/default.jpg' %}" class="rounded-circle" alt="Reports" width="200" height="200" alt="Reports Photo"></a>
+      </div>
+  </div>
+</div>
+{% endblock %}

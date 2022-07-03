@@ -1,0 +1,95 @@
+.card-title{
+  color: darkgrey;
+  font-family: cursive;
+}
+
+.col-lg-6 {
+  margin-bottom: 20px;
+  margin-top: 5px;
+  text-align: center;
+}
+
+.imgButton {
+  position: relative;
+}
+
+.imgButton img {
+  transform: translateY(0);
+  transition: all .4s ease-out;
+  border: .3em solid darkorange;
+  /*-webkit-box-shadow: 8px 7px 5px 0px rgba(0, 0, 0, .3);*/
+  /*-moz-box-shadow: 8px 7px 5px 0px rgba(0, 0, 0, .3);*/
+  /*box-shadow: 8px 7px 5px 0px rgba(0, 0, 0, .3);*/
+}
+
+.zero:before {
+  content: 'Registry'
+}
+
+.one:before {
+  content: 'Register New'
+}
+
+.two:before {
+  content: 'Reports'
+}
+
+.three:before {
+  content: 'User Profile'
+}
+
+
+.imgButton:before {
+  position: absolute;
+  padding: 15px 20px;
+  left: -40px;
+  bottom: -9px;
+  font-size: 20px;
+  font-family: cursive;
+  /*font-family: 'Gloria Hallelujah', cursive;*/
+  color: #17a2b8;
+  background: white;
+  transition: all .4s ease-out;
+  transform: translateY(150px);
+  opacity: 0;
+  z-index: 1;
+  border-radius: 100px;
+  font-weight: normal;
+  border: .2em solid darkorange;
+  -webkit-box-shadow: 8px 7px 5px 0px rgba(0, 0, 0, .5);
+  -moz-box-shadow: 8px 7px 5px 0px rgba(0, 0, 0, .5);
+  box-shadow: 8px 7px 5px 0px rgba(0, 0, 0, .5);
+}
+
+.imgButton:hover:before {
+  bottom: 45px;
+  opacity: 100;
+}
+
+.imgButton:hover img {
+  transform: translateY(-10px);
+}
+
+.floatButton {
+  display: inline-block;
+  vertical-align: middle;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-transition-duration: 0.3s;
+  transition-duration: 0.3s;
+  -webkit-transition-property: transform;
+  transition-property: transform;
+  -webkit-transition-timing-function: ease-out;
+  transition-timing-function: ease-out;
+}
+
+.floatButton:hover,
+.floatButton:focus,
+.floatButton:active {
+  -webkit-transform: translateY(-8px);
+  transform: translateY(-8px);
+}

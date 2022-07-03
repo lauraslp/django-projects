@@ -1,0 +1,72 @@
+.divider:after,
+.divider:before {
+content: "";
+flex: 1;
+height: 1px;
+background: #eee;
+}
+.h-custom {
+height: calc(100% - 73px);
+}
+@media (max-width: 450px) {
+.h-custom {
+height: 100%;
+}
+}
+
+.btn-info {
+    color: #fff;
+    background-color:  #17a2b8;
+    border-color: #17a2b8;
+}
+
+.btn-style{
+    transform: translateY(0);
+    transition: all .4s ease-out;
+    border: .3em solid darkorange;
+}
+.title-img{
+  background-image: url('img/dog_rest_pet.jpg');
+}
+
+.title-page{
+    background-size: cover;
+    background-repeat: no-repeat;
+    margin-top: 2%;
+    padding: 2%;
+}
+
+.col-sm-6{
+    box-sizing: border-box;
+    outline: none;
+}
+
+.page-content {
+    background: rgba(255,255,255,.95);
+    padding: 30px 20px 5px;
+}
+
+.container {
+    width: 100%;
+    padding-right: 15px;
+    padding-left: 16px;
+    margin-right: 5px;
+    /*margin-left: 100px;*/
+}
+
+.centered-form{
+	margin-top: 60px;
+}
+
+.centered-form .panel{
+	background: rgba(255, 255, 255, 0.8);
+	box-shadow: rgba(0, 0, 0, 0.3) 20px 20px 20px;
+}
+
+.navbar-bg{
+    background: darkgrey;
+}
+
+.regForm-container{
+
+}
