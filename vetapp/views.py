@@ -4,29 +4,84 @@ from django.contrib.auth import login, authenticate
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.urls import reverse
-from django.views.generic import CreateView
+from django.views.generic import CreateView, FormView, ListView, UpdateView
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.forms import modelformset_factory
-from .models import Client, Card
-from .forms import RegisterForm, ClientForm, PetForm, VisitForm, CardForm
+from .models import Client, Card, Pet, Visit
+from .forms import RegisterForm, CardForm, ClientForm, VisitForm, PetForm
 
-# Create your views here.
 
-class AddPatient(LoginRequiredMixin,CreateView):
+# class CardFormView(LoginRequiredMixin,CreateView):
+#     model = Card
+#     form_class = CardForm
+#     login_url = 'vet-login'
+#     template_name = 'vetapp/register_new.html'
+#     # success_url = '/registration/'
+#
+# class ClientFormView(LoginRequiredMixin,CreateView):
+#     model = Client
+#     form_class = ClientForm
+#     login_url = 'vet-login'
+#     template_name = 'vetapp/register_new.html'
+
+class CardDetailsView(LoginRequiredMixin, UpdateView):
     model = Card
     form_class = CardForm
+    template_name = 'vetapp/card_details.html'
     login_url = 'vet-login'
+
+
+class MultipleFormsView(LoginRequiredMixin, CreateView):
     template_name = 'vetapp/register_new.html'
-    success_url = '/registration/'
+    login_url = 'vet-login'
+    model = Card
+    form_classes = {
+        'card': CardForm,
+        'client': ClientForm,
+        'pet': PetForm,
+    }
+    success_url = '/start-page/'
 
-    def registernew(request):
-        form = CardForm
+class ListCardView(LoginRequiredMixin, ListView):
+    template_name = 'vetapp/registry.html'
+    login_url = 'vet-login'
+    model = Card
+    context_object_name = 'cards'
+    paginate_by = 10
+    form_class = VisitForm
+    # queryset = Card.objects.all()
 
-        if form.is_valid:
-            form.save()
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['visits'] = Visit.objects.all()
+        return context
+
+
+def registernew(request):
+    if request.method == 'POST':
+        card_form = CardForm(request.POST)
+        client_form = ClientForm(request.POST)
+        pet_form = PetForm(request.POST)
+        visit_form = VisitForm(request.POST)
+        if card_form.is_valid and client_form.is_valid and pet_form.is_valid and visit_form.is_valid:
+            card_form.save()
+            client_form.save()
+            pet_form.save()
+            visit_form.save()
+            messages.success(request, f'Data was saved')
         else:
-            form = CardForm
-        return render(request, 'vetapp/register_new.html', {'form': form})
+            messages.error(request, f'Not all fields was filled')
+    else:
+        card_form = CardForm()
+        client_form = ClientForm()
+        pet_form = PetForm()
+        visit_form = VisitForm()
+    context = {
+        'card_form': card_form,
+        'client_form': client_form,
+        'pet_form': pet_form,
+        'visit_form': visit_form,
+    }
+    return render(request, 'vetapp/register_new.html', context=context)
 
 
 
@@ -68,15 +123,18 @@ def logout_user(request):
 def startpage(request):
     return render(request, 'vetapp/startpage.html')
 
+# @login_required
+# def details(request):
+#     return render(request, 'vetapp/card_details.html')
 
 def reports(request):
     return render(request, 'vetapp/reports.html')
 
-
+@login_required
 def registry(request):
     return render(request, 'vetapp/registry.html')
 
-
+@login_required
 def profile(request):
     # return render(request, 'users/profile.html', {'navbar': 'profile'})
     return render(request, 'users/profile.html')

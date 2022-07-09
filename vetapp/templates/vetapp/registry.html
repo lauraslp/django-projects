@@ -7,6 +7,44 @@
 {% include 'vetapp/navigation.html' %}
 {% load static %}
 
-<h1>Registry</h1>
+<div class="container-lg ml-5 mr-5">
+    <form class="form-inline">
+        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-info my-2 my-sm-0" type="submit">Search</button>
+    </form>
+    </br>
 
+<table class="table table-bordered table-hover w-auto">
+  <thead>
+    <tr>
+        <th scope="col">Card No.</th>
+        <th scope="col">Date Created</th>
+        <th scope="col">Clinic</th>
+        <th scope="col">Client Name</th>
+        <th scope="col">Pet Name</th>
+        <th scope="col">Microchip ID</th>
+        <th scope="col">Details</th>
+    </tr>
+  </thead>
+    {% for card in cards %}
+    <tbody>
+        <tr>
+            <td>{{ card.card_no }}</td>
+            <td>{{ card.date_time|date:'Y-m-d' }}</td>
+            <td>{{ card.user_clinic.clinic }}</td>
+            {% for visit in visits %}
+                <td>{{ visit.client.firstname }} {{ visit.client.lastname }}</td>
+                <td>{{ visit.pet.name }}</td>
+            {% endfor %}
+            <td>{{ card.microchip_code }}</td>
+            <td>
+                <a class="edit" href="/details/{{card.id}}" title="Details" data-toggle="tooltip"><i class="material-icons icon">pageview</i></a>
+            </td>
+        </tr>
+    {% endfor %}
+
+
+  </tbody>
+</table>
+</div>
 {% endblock %}

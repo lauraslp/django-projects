@@ -38,6 +38,8 @@ INSTALLED_APPS = [
     'users.apps.UsersConfig',
 
     # django_apps
+    'computed_property',
+    'bootstrap_datepicker_plus',
     'django.contrib.admin',
     'django.contrib.auth',
     'crispy_forms',

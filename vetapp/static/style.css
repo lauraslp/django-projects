@@ -67,6 +67,8 @@ height: 100%;
     background: darkgrey;
 }
 
-.regForm-container{
+i.icon {
+    color: steelblue;
+    font-size: 30px;
 
 }
